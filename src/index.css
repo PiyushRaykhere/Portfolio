@@ -125,32 +125,29 @@ body {
   box-shadow: 0 10px 30px color-mix(in srgb, var(--brand) 36%, transparent);
 }
 
-/* Add this to src/index.css */
 
-/* Prepare the nav links for positioning the underline */
 .nav nav a {
   position: relative;
-  overflow: hidden; /* Hides the underline when it's outside the link */
+  overflow: hidden; 
 }
 
-/* Create the underline using the ::after pseudo-element */
 .nav nav a::after {
   content: '';
   position: absolute;
   bottom: 0;
-  left: 50%; /* Start from the middle */
-  width: 0;    /* Initially it has no width */
+  left: 50%; 
+  width: 0;    
   height: 2px;
   background: var(--brand);
   
-  /* This combination creates a cool, slightly bouncy popup effect */
+
   transform: translateX(-50%);
   transition: width 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
-/* Animate the underline on hover */
+
 .nav nav a:hover::after {
-  width: 100%; /* Expand to full width on hover */
+  width: 100%; 
 }
 
 
@@ -369,7 +366,7 @@ section {
 .t-item::before {
   content: "";
   position: absolute;
-  left: -32px; /* Adjusted for JSX structure */
+  left: -32px; 
   top: 8px;
   width: 12px;
   height: 12px;
@@ -401,7 +398,7 @@ footer {
   background: color-mix(in srgb, var(--panel) 50%, transparent);
 }
 
-/* Reveal animations */
+
 .reveal {
   opacity: 0;
   transform: translateY(16px);
@@ -446,5 +443,86 @@ footer {
   }
   .nav-hide-sm {
     display: none
+  }
+}
+
+
+
+.hamburger-btn {
+  display: none; /* Hidden by default */
+  background: none;
+  border: none;
+  color: var(--text);
+  cursor: pointer;
+  padding: 0;
+  z-index: 1001; 
+}
+
+
+.brand a.logo-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+@media (max-width: 980px) {
+  .grid.cols-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+
+/* Mobile view styles */
+@media (max-width: 620px) {
+  .hamburger-btn {
+    display: block;
+  }
+  .nav-hide-sm {
+    display: none;
+  }
+
+  .nav-links {
+    position: fixed;
+    inset: 0; 
+    background: rgba(11, 11, 14, 0.95);
+    backdrop-filter: blur(8px);
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+
+    
+    opacity: 0;
+    transform: translateY(-100%);
+    pointer-events: none;
+    transition: transform 0.35s ease-out, opacity 0.35s ease-out;
+  }
+
+  
+  .mobile-nav-open {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  
+  .nav-links a {
+    font-size: 1.5rem;
+    font-weight: 500;
+  }
+}
+
+
+@media (max-width: 480px) {
+  .footer-grid {
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    text-align: center;
+  }
+  .footer-grid > div:last-child {
+    justify-content: center;
   }
 }
